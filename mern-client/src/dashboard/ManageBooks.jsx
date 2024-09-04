@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Table, TableBody } from 'flowbite-react';
 import { Link } from 'react-router-dom';
+import { server } from '../constants/config';
 
 const ManageBooks = () => {
   const [allBooks, setAllBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/all-books")
+    fetch(`${server}/all-books`)
       .then(res => res.json())
       .then(data => setAllBooks(data))
       .catch(error => console.error('Error fetching books:', error));
@@ -14,7 +15,7 @@ const ManageBooks = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/book/${id}`, {
+      const response = await fetch(`${server}/book/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {

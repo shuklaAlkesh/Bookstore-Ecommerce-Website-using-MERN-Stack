@@ -1,6 +1,7 @@
 import {React,useState }from 'react'
 import { useLoaderData, useParams } from 'react-router-dom'
 import { Button, Checkbox, Textarea, Label, Select, TextInput } from 'flowbite-react';
+import { server } from '../constants/config';
 
 const EditBooks = () => {
   const {id} = useParams();
@@ -52,7 +53,7 @@ const EditBooks = () => {
     };
   
     // Update data to database
-    fetch(`http://localhost:5000/book/${id}`, {
+    fetch(`${server}/book/${id}`, {
       method: "PATCH", // Corrected to uppercase
       headers: {
         "Content-type": "application/json",
